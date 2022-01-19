@@ -13,7 +13,7 @@ function App() {
       </h1>
       <MyClassComponent name={false} myNum={50} >Hello from class components CHILD PROPS</MyClassComponent>
       <MyFunctionalComponent name="Bedirhak"  company="sbi" />
-      <MyFunctionalComponent name="Children Class comp. name">This is my children.</MyFunctionalComponent>
+      <MyFunctionalComponent name="Children Class comp. name">This the is my children.</MyFunctionalComponent>
       <div>
         {MyFunctionalComponentNamed.someData}
       </div>
