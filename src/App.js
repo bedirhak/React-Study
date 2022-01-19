@@ -17,8 +17,7 @@ function App() {
       <div>
         {MyFunctionalComponentNamed.someData}
       </div>
-      <MyFunctionalComponentNamed.MyFunctionalComponent2/>
-      <MyFunctionalComponentNamed.MyFunctionalComponent3/>
+
     </div>
   ); 
   
