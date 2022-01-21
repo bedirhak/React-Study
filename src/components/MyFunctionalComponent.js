@@ -1,12 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types'; //Props Type check
 
 const MyFunctionalComponent = (props) => {
+
+    const [counter,setCounter] =  useState(0);
+
+    const incrementCounter = () => {
+        setCounter(counter+1);
+    }
+
+
   return (
       <div>
-          <p>THis is my functional component!</p>
-          <p> Hello, my name is "{props.name}". I am working at "{props.company}" company  </p>
+          <p>THis is my <span style={{fontWeight:"700"}}> FUNCTIONAL </span> component!</p>
+          <p> Hello, my name !S "{props.name}". I am working at "{props.company}" company  </p>
           <p style={{ color:"red" }} >{props.children}</p>
+          <button onClick={incrementCounter} > Increase Counter  </button>
+          <p> My counter is {counter} </p>
       </div>
   );
 };
@@ -18,7 +28,7 @@ MyFunctionalComponent.propTypes = {
 };
 
 MyFunctionalComponent.defaultProps={
-    name: 'BEdirhan',
+    name: "5555",
     children: 'this is not a closed tag component '
 }
 
@@ -34,10 +44,11 @@ const MyFunctionalComponent2 = () => {
 
 
 
-const MyFunctionalComponent3 = () => {
+const MyFunctionalComponent3 = (props) => {
     return (
         <div>
             <p>THis is my THIRD functional component!</p>
+            <p>THis is my THIRD functional componenet's child {props.children} </p>
         </div>
     );
 };

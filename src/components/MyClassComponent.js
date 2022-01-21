@@ -2,6 +2,8 @@ import React, { Component} from 'react';
 
 import PropTypes from 'prop-types';
 
+import MySubClassComponent from './MySubClassComponent';
+
 
 
 class MyClassComponent extends Component {
@@ -11,23 +13,26 @@ class MyClassComponent extends Component {
         this.state = { counter: 1 };
     }; */
 
-    state ={
+    state = {
         counter :1,
         names: "Bedirhan",
-        surname : "Kara",
-        users:[]
-    }
+        surnames : "Kara",
+        users:[
+            {name: 'Esra' , surname:'Gürlük'},
+            {name: 'Bedirhan' , surname:'Kara'}
+        ]
+    };
 
 
     static propTypes = {
-        name : PropTypes.bool,
+        name : PropTypes.string,
         myNum: PropTypes.number
 
     };
 
 
     static defaultProps = {
-        name : 'Default Class Props Wrong type or nothing'
+        name : 'DENEME'
 
     };
 
@@ -47,13 +52,18 @@ class MyClassComponent extends Component {
 
     render() {
     return(
-    <div>
-        <p style={{ color: "brown" }} > My counter is: {this.state.counter} name is {this.state.names} {this.state.surname} </p>
+        <div>
+        <p>Props Name: {this.props.name}  </p>
+        <p style={{ color: "brown" }} > My counter is: {this.state.counter} name is {this.state.names} {this.state.surnames} </p>
         <p>Props Number: {this.props.myNum}  </p>
-        <p>Users: {this.state.users}  </p>
         <button onClick={this.incrementCounter} > Increment Counter </button>
         <p>HEllo from My Class Component!</p>
-        <p style={{color:"blue"}} > THis is my end of class props {this.props.name}</p>
+        <p style={{color:"blue",borderBottom:"1px solid black"}} > THis is my end of class props {this.props.name}</p>
+
+        <MySubClassComponent name={this.state.users[0].name} surname={this.state.users[0].surname} />
+        <MySubClassComponent name={this.state.users[1].name} surname={this.state.users[1].surname} />
+
+
 
     </div>
     );
