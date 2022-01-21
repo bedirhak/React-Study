@@ -11,7 +11,6 @@ const MyFunctionalComponent = (props) => {
         setCounter(counter+1);
     }
 
-
   return (
       <div>
           <p>THis is my <span style={{fontWeight:"700"}}> FUNCTIONAL </span> component!</p>
@@ -24,7 +23,6 @@ const MyFunctionalComponent = (props) => {
       </div>
   );
 };
-
 
 MyFunctionalComponent.propTypes = {
     name: PropTypes.string // Is this prop bool or not if is it use it
