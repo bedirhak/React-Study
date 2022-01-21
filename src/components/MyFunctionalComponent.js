@@ -5,6 +5,8 @@ const MyFunctionalComponent = (props) => {
 
     const [counter,setCounter] =  useState(0);
 
+    const [description,setDescription] = useState({text : 'someValue',bedirhan: 'bedirhanKara'});
+
     const incrementCounter = () => {
         setCounter(counter+1);
     }
@@ -17,6 +19,8 @@ const MyFunctionalComponent = (props) => {
           <p style={{ color:"red" }} >{props.children}</p>
           <button onClick={incrementCounter} > Increase Counter  </button>
           <p> My counter is {counter} </p>
+          <p> {description.bedirhan} </p>
+          
       </div>
   );
 };
