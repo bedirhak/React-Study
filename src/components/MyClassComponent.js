@@ -61,9 +61,13 @@ class MyClassComponent extends Component {
         const userIndex = this.state.users.findIndex(user => user.id === userId)
         const user = {...this.state.users[userIndex]};
         user.name = event.target.value;
-        const users = {...this.state.users};
+        const users = [...this.state.users];
         users[userIndex] = user;
-        this.setState({users:users});
+        console.log(users);
+        this.setState({ 
+            users : users
+            
+        });
     };
 
 
@@ -77,6 +81,18 @@ class MyClassComponent extends Component {
 
 
     render() {
+
+
+
+    const buttonStyle = {
+        border: '1px solid red',
+        borderRadius: '15px',
+        backgroundColor: 'pink',
+        cursor: 'pointer',
+        padding: '10px'
+    };
+
+
     return(
         <div>
 
@@ -84,7 +100,7 @@ class MyClassComponent extends Component {
         <p>First Line of Class Component Props Name: {this.props.name}  </p>
         <p style={{ color: "brown" }} > My counter is: {this.state.counter} name is {this.state.names} {this.state.surnames} </p>
         <p>Props Number: {this.props.myNum}  </p>
-        <button onClick={this.incrementCounter} > Increment Counter </button>
+        <button style={buttonStyle} onClick={this.incrementCounter} > Increment Counter </button>
         <p>HEllo from My Class Component!</p>
         <p style={{color:"blue",borderBottom:"1px solid black"}} > THis is my end of class props {this.props.name}</p>
 
@@ -96,13 +112,8 @@ class MyClassComponent extends Component {
             key={user.id}
             changed = {(event) => this.handleNameChange(event,user.id)}  
             />
-
             )
         })}
-
-
-
-
 
     </div>
     );
