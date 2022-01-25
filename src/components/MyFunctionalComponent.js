@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import PropTypes from 'prop-types'; //Props Type check
 
 const MyFunctionalComponent = (props) => {
@@ -10,6 +10,29 @@ const MyFunctionalComponent = (props) => {
     const incrementCounter = () => {
         setCounter(counter+1);
     }
+
+    /*useEffect(()  =>{
+        document.title = `You clicked ${counter} times `;
+s
+    });*/
+
+
+        /*bir kere çalışıp sonrasında çalışmamasını sağlıyor. 
+    componentDidMount() fonksiyonu gibi çalışıyor Sayfa 
+    yüklenince güncel counteri title yapar 
+    sonra değişiklikte bir daha etkilenmez*/
+
+    /*useEffect(()  =>{
+        document.title = `You clicked ${counter} times `;
+
+    },[]);*/
+
+    /*Bütün state ya da propslara değil sadece söylenene bakar*/
+    useEffect(()=>{
+        document.title = `You clicked ${counter} times`
+    },[counter]);
+
+
 
   return (
       <div>

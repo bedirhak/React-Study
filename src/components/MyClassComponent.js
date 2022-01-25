@@ -41,7 +41,7 @@ class MyClassComponent extends Component {
   
         this.setState({ 
             counter : this.state.counter+1,
-            users: [this.state.users, this.state.counter,","]
+            
         });
 
         
@@ -53,7 +53,7 @@ class MyClassComponent extends Component {
     render() {
     return(
         <div>
-        <p>Props Name: {this.props.name}  </p>
+        <p>First Line of Class Component Props Name: {this.props.name}  </p>
         <p style={{ color: "brown" }} > My counter is: {this.state.counter} name is {this.state.names} {this.state.surnames} </p>
         <p>Props Number: {this.props.myNum}  </p>
         <button onClick={this.incrementCounter} > Increment Counter </button>
