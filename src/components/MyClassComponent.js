@@ -18,8 +18,8 @@ class MyClassComponent extends Component {
         names: "Bedirhan",
         surnames : "Kara",
         users:[
-            {name: 'Esra' , surname:'Gürlük'},
-            {name: 'Bedirhan' , surname:'Kara'}
+            {id: 1, name: 'Esra' , surname:'Gürlük'},
+            {id: 2, name: 'Bedirhan' , surname:'Kara'}
         ]
     };
 
@@ -57,13 +57,13 @@ class MyClassComponent extends Component {
         console.log(this);
     }
 
-    handleNameChange = (event) =>{
-        this.setState({
-            users: [
-                {name :'Esra', surname : 'Gürlük Yurt'},
-                {name : event.target.value , surname : 'Kılınç'}
-            ]
-        });
+    handleNameChange = (event,userId) =>{
+        const userIndex = this.state.users.findIndex(user => user.id === userId)
+        const user = {...this.state.users[userIndex]};
+        user.name = event.target.value;
+        const users = {...this.state.users};
+        users[userIndex] = user;
+        this.setState({users:users});
     };
 
 
@@ -88,8 +88,19 @@ class MyClassComponent extends Component {
         <p>HEllo from My Class Component!</p>
         <p style={{color:"blue",borderBottom:"1px solid black"}} > THis is my end of class props {this.props.name}</p>
 
-        <MySubClassComponent name={this.state.users[0].name} surname={this.state.users[0].surname} changed={this.handleNameChange}  />
-        <MySubClassComponent name={this.state.users[1].name} surname={this.state.users[1].surname}   />
+        {this.state.users.map(user => {
+            return(
+            <MySubClassComponent 
+            name={user.name} 
+            surname={user.surname} 
+            key={user.id}
+            changed = {(event) => this.handleNameChange(event,user.id)}  
+            />
+
+            )
+        })}
+
+
 
 
 
