@@ -1,5 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import PropTypes from 'prop-types'; //Props Type check
+import MyExampleContext from '../context/MyExampleContext';
+
 
 const MyFunctionalComponent = (props) => {
 
@@ -29,13 +31,33 @@ s
 
     /*Bütün state ya da propslara değil sadece söylenene bakar*/
     useEffect(()=>{
-        document.title = `You clicked ${counter} times`
+        if (counter > 0) {
+            document.title = `You clicked ${counter} times`
+        }
+        else{
+            document.title = `Hello World`
+        }
     },[counter]);
 
 
 
   return (
       <div>
+          <MyExampleContext.Consumer>
+              {
+                  (myContext) => {
+                    return(
+                        <div>
+
+                            <p>myValue1: {myContext.myValue1} </p>
+                            <input  onChange={ (event) =>  myContext.updateValue1(event.target.value)} />
+                        </div>
+                    ) 
+                  }
+              }
+
+          </MyExampleContext.Consumer>
+
           <p>THis is my <span style={{fontWeight:"700"}}> FUNCTIONAL </span> component!</p>
           <p> Hello, my name !S "{props.name}". I am working at "{props.company}" company  </p>
           <p style={{ color:"red" }} >{props.children}</p>

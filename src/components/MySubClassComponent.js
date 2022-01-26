@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './MySubClassComponent.css'
-
+import MyExampleContext from '../context/MyExampleContext';
 
 
 class MySubClassComponent extends Component {
@@ -12,6 +12,27 @@ class MySubClassComponent extends Component {
     
     return ( 
     <div className='User'>
+
+      <MyExampleContext.Consumer>
+
+        {
+          (myContext) => {
+            return (
+              <div>
+                <p> THIS IS SUB CLASSES VALUE {myContext.myValue1} </p>
+
+
+              </div>
+
+            );
+
+          }
+
+        }
+
+      </MyExampleContext.Consumer>
+
+
 
         <p> 1 This is my SUBCLASS component</p>
         
