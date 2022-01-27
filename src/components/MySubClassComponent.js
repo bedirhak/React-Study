@@ -34,7 +34,7 @@ class MySubClassComponent extends Component {
 
 
 
-        <p> 1 This is my SUBCLASS component</p>
+        <p> This is {this.props.name}'s SUBCLASS component</p>
         
         <p  >Hello, my name is {this.props.name} {this.props.surname} </p>
 

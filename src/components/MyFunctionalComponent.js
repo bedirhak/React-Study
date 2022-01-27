@@ -1,17 +1,15 @@
 import React, {useState,useEffect} from 'react';
 import PropTypes from 'prop-types'; //Props Type check
 import MyExampleContext from '../context/MyExampleContext';
-
+import axios from 'axios';
+import MySubClassComponent from './MySubClassComponent';
 
 const MyFunctionalComponent = (props) => {
 
-    const [counter,setCounter] =  useState(0);
+    const [users,setUsers] = useState([]);
 
-    const [description,setDescription] = useState({text : 'someValue',bedirhan: 'bedirhanKara'});
 
-    const incrementCounter = () => {
-        setCounter(counter+1);
-    }
+   
 
     /*useEffect(()  =>{
         document.title = `You clicked ${counter} times `;
@@ -31,13 +29,23 @@ s
 
     /*Bütün state ya da propslara değil sadece söylenene bakar*/
     useEffect(()=>{
-        if (counter > 0) {
-            document.title = `You clicked ${counter} times`
-        }
-        else{
-            document.title = `Hello World`
-        }
-    },[counter]);
+        axios.get("https://jsonplaceholder.typicode.com/users")
+        .then(response => {
+            const apiUsers = response.data.slice(0,5);
+            const updatedUsers = apiUsers.map( user => {
+                return{
+                    ...user,
+                    surname: 'Kara'
+                }
+                });
+            setUsers(updatedUsers);
+                
+        })
+        .catch(error => {
+            console.log(error);
+        })
+       
+    },[]);
 
 
 
@@ -58,12 +66,13 @@ s
 
           </MyExampleContext.Consumer>
 
-          <p>THis is my <span style={{fontWeight:"700"}}> FUNCTIONAL </span> component!</p>
-          <p> Hello, my name !S "{props.name}". I am working at "{props.company}" company  </p>
-          <p style={{ color:"red" }} >{props.children}</p>
-          <button onClick={incrementCounter} > Increase Counter  </button>
-          <p> My counter is {counter} </p>
-          <p> {description.bedirhan} </p>
+              {users.map(user=>{
+                  return(
+                      <MySubClassComponent key={user.id} name={user.name} />
+                      );
+              })}
+
+      
           
       </div>
   );
