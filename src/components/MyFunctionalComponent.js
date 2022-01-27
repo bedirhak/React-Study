@@ -8,14 +8,10 @@ const MyFunctionalComponent = (props) => {
 
     const [users,setUsers] = useState([]);
 
-
-   
-
     /*useEffect(()  =>{
         document.title = `You clicked ${counter} times `;
 s
     });*/
-
 
         /*bir kere çalışıp sonrasında çalışmamasını sağlıyor. 
     componentDidMount() fonksiyonu gibi çalışıyor Sayfa 
@@ -47,8 +43,6 @@ s
        
     },[]);
 
-
-
   return (
       <div>
           <MyExampleContext.Consumer>
@@ -71,9 +65,6 @@ s
                       <MySubClassComponent key={user.id} name={user.name} />
                       );
               })}
-
-      
-          
       </div>
   );
 };
@@ -88,8 +79,6 @@ MyFunctionalComponent.defaultProps={
     children: 'this is not a closed tag component '
 }
 
-
-
 const MyFunctionalComponent2 = () => {
     return (
         <div>
@@ -97,8 +86,6 @@ const MyFunctionalComponent2 = () => {
         </div>
     );
   };
-
-
 
 const MyFunctionalComponent3 = (props) => {
     return (
