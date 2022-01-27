@@ -1,16 +1,73 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import PropTypes from 'prop-types'; //Props Type check
+import MyExampleContext from '../context/MyExampleContext';
+import axios from 'axios';
+import MySubClassComponent from './MySubClassComponent';
 
 const MyFunctionalComponent = (props) => {
+
+    const [users,setUsers] = useState([]);
+
+    /*useEffect(()  =>{
+        document.title = `You clicked ${counter} times `;
+s
+    });*/
+
+        /*bir kere çalışıp sonrasında çalışmamasını sağlıyor. 
+    componentDidMount() fonksiyonu gibi çalışıyor Sayfa 
+    yüklenince güncel counteri title yapar 
+    sonra değişiklikte bir daha etkilenmez*/
+
+    /*useEffect(()  =>{
+        document.title = `You clicked ${counter} times `;
+
+    },[]);*/
+
+    /*Bütün state ya da propslara değil sadece söylenene bakar*/
+    useEffect(()=>{
+        axios.get("https://jsonplaceholder.typicode.com/users")
+        .then(response => {
+            const apiUsers = response.data.slice(0,5);
+            const updatedUsers = apiUsers.map( user => {
+                return{
+                    ...user,
+                    surname: 'Kara'
+                }
+                });
+            setUsers(updatedUsers);
+                
+        })
+        .catch(error => {
+            console.log(error);
+        })
+       
+    },[]);
+
   return (
       <div>
-          <p>THis is my functional component!</p>
-          <p> Hello, my name is "{props.name}". I am working at "{props.company}" company  </p>
-          <p style={{ color:"red" }} >{props.children}</p>
+          <MyExampleContext.Consumer>
+              {
+                  (myContext) => {
+                    return(
+                        <div>
+
+                            <p>myValue1: {myContext.myValue1} </p>
+                            <input  onChange={ (event) =>  myContext.updateValue1(event.target.value)} />
+                        </div>
+                    ) 
+                  }
+              }
+
+          </MyExampleContext.Consumer>
+
+              {users.map(user=>{
+                  return(
+                      <MySubClassComponent key={user.id} name={user.name} />
+                      );
+              })}
       </div>
   );
 };
-
 
 MyFunctionalComponent.propTypes = {
     name: PropTypes.string // Is this prop bool or not if is it use it
@@ -18,11 +75,9 @@ MyFunctionalComponent.propTypes = {
 };
 
 MyFunctionalComponent.defaultProps={
-    name: 'BEdirhan',
+    name: "5555",
     children: 'this is not a closed tag component '
 }
-
-
 
 const MyFunctionalComponent2 = () => {
     return (
@@ -32,12 +87,11 @@ const MyFunctionalComponent2 = () => {
     );
   };
 
-
-
-const MyFunctionalComponent3 = () => {
+const MyFunctionalComponent3 = (props) => {
     return (
         <div>
             <p>THis is my THIRD functional component!</p>
+            <p>THis is my THIRD functional componenet's child {props.children} </p>
         </div>
     );
 };
