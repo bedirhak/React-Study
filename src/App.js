@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import MyFunctionalComponent from './components/MyFunctionalComponent'
 import * as MyFunctionalComponentNamed from './components/MyFunctionalComponent'
@@ -11,13 +11,21 @@ import MyReduxExampleComponent2 from './components/MyReduxExampleComponent2';
 import RouterComponent from './components/RouterComponent';
 
 function App() {
+
+
+  useEffect(()=>{
+   alert("hello");
+   
+});
+
+
   console.log(store.getState())
    return (
      <Provider store={store}>
         <MyExampleProvider>
           <div className="App">
             <RouterComponent/>
-            <h1 style={{fontSize:"24px",textAlign:"center"}} >
+            <h1 className='transform' style={{fontSize:"24px",textAlign:"center"}} >
               HEllo !
             </h1>
             <MyClassComponent name="bedirhan" myNum={50} >HElloooo class components CHILD PROPS</MyClassComponent>
