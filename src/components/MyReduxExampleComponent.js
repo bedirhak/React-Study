@@ -7,14 +7,9 @@ const MyReduxExampleComponent = (props) => {
         <p>Common Value 1: {props.commonValue1}  </p>
         <input value={props.commonValue1} onChange={ (event) => props.onStoreStateChange("commonValue1", event.target.value ) } />
 
-
         <p>Common Value 2: {props.commonValue2}  </p>
         <input value={props.commonValue2} onChange={ (event) => props.onStoreStateChange("commonValue2", event.target.value ) } />
 
-        {console.log("Common value 1: " , props.commonValue1 ) }
-        {console.log("Common value 2: " , props.commonValue2 ) }
-
-  
 
     </div>
     );

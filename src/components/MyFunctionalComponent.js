@@ -25,22 +25,11 @@ s
 
     /*Bütün state ya da propslara değil sadece söylenene bakar*/
     useEffect(()=>{
-        axios.get("https://jsonplaceholder.typicode.com/users")
-        .then(response => {
-            const apiUsers = response.data.slice(0,5);
-            const updatedUsers = apiUsers.map( user => {
-                return{
-                    ...user,
-                    surname: 'Kara'
-                }
-                });
-            setUsers(updatedUsers);
-                
+        axios.get("/backend-proxy-api/hello/sayHello")
+        .then(res => {
+            console.log(res.data);
         })
-        .catch(error => {
-            console.log(error);
-        })
-       
+
     },[]);
 
   return (
