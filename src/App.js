@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
 import MyFunctionalComponent from './components/MyFunctionalComponent'
 import * as MyFunctionalComponentNamed from './components/MyFunctionalComponent'
@@ -13,14 +13,10 @@ import RouterComponent from './components/RouterComponent';
 function App() {
 
 
-  useEffect(()=>{
-   alert("hello");
-   
-});
-
-
-  console.log(store.getState())
-   return (
+  console.log("NODE_ENV",process.env.NODE_ENV);
+  console.log("REACT_APP_DENEME_KEY",process.env.REACT_APP_DENEME_KEY);
+  console.log("REACT_APP_ORTAM1_KEY",process.env.REACT_APP_ORTAM1_KEY);
+   return ( 
      <Provider store={store}>
         <MyExampleProvider>
           <div className="App">
